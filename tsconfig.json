@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "jsx": "react",
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
+  },
+  "include": [
+    "custom_typings/**/*.ts",
+    "node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.d.ts",
+    "src/**/*.ts"
+  ],
+}
