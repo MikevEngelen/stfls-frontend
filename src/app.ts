@@ -26,7 +26,7 @@ export class MyApp extends LitElement {
       return html`
       <simple-greeting></simple-greeting>
       <paginated-table .api=${this.apiEndpoint} @row-clicked=${this.handleRowClicked}></paginated-table>
-      <info-panel .selectedIndex=${this.selectedIndex}></info-panel>
+      <info-panel .api=${this.apiEndpoint} .selectedIndex=${this.selectedIndex}></info-panel>
   `;
   }
 }
