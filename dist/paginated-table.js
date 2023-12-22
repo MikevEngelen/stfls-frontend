@@ -76,6 +76,9 @@ let PaginatedTable = class PaginatedTable extends LitElement {
             this.fetchData();
         }
     }
+    handleRowClick(index) {
+        this.dispatchEvent(new CustomEvent('row-clicked', { detail: { index } }));
+    }
     render() {
         if (!this.data || !this.data.data || this.data.data.length === 0) {
             return html `<code>${this.data}</code><p>No data available.</p>`;
@@ -89,7 +92,7 @@ let PaginatedTable = class PaginatedTable extends LitElement {
         </thead>
         <tbody>
           ${this.data.data.map((item) => html `
-              <tr>
+              <tr @click=${() => this.handleRowClick(item.DeviceId)}>
                 <td>${item.DeviceId}</td>
                 <td>${item.DeviceType}</td>
                 <td>${item.TimeStamp}</td>
@@ -118,6 +121,9 @@ __decorate([
 __decorate([
     property({ type: Object })
 ], PaginatedTable.prototype, "filterOptions", void 0);
+__decorate([
+    property({ type: Number })
+], PaginatedTable.prototype, "selectedIndex", void 0);
 PaginatedTable = __decorate([
     customElement('paginated-table')
 ], PaginatedTable);

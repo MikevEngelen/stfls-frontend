@@ -56,6 +56,8 @@ class PaginatedTable extends LitElement {
   api: string | undefined;
   @property({ type: Object })
   filterOptions: any | undefined;
+  @property({ type: Number })
+  selectedIndex: Number | undefined;
 
   connectedCallback() {
     super.connectedCallback();
@@ -102,6 +104,10 @@ class PaginatedTable extends LitElement {
     }
   }
 
+  handleRowClick(index: number) {
+    this.dispatchEvent(new CustomEvent('row-clicked', { detail: { index } }));
+  }
+
   render() {
     if (!this.data || !this.data.data || this.data.data.length === 0) {
       return html`<code>${this.data}</code><p>No data available.</p>`;
@@ -119,7 +125,7 @@ class PaginatedTable extends LitElement {
         <tbody>
           ${this.data.data.map(
             (item: gpsModel) => html`
-              <tr>
+              <tr @click=${() => this.handleRowClick(item.DeviceId)}>
                 <td>${item.DeviceId}</td>
                 <td>${item.DeviceType}</td>
                 <td>${item.TimeStamp}</td>

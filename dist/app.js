@@ -9,6 +9,7 @@ import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import './paginated-table';
 import './filter';
+import './info-panel';
 let MyApp = class MyApp extends LitElement {
     constructor() {
         super(...arguments);
@@ -17,16 +18,24 @@ let MyApp = class MyApp extends LitElement {
     static { this.styles = css `
     /* Add your styling here */
   `; }
+    handleRowClicked(event) {
+        console.log(event.detail.index);
+        this.selectedIndex = event.detail.index;
+    }
     render() {
         return html `
       <simple-greeting></simple-greeting>
-      <paginated-table .api=${this.apiEndpoint}></paginated-table>
-    `;
+      <paginated-table .api=${this.apiEndpoint} @row-clicked=${this.handleRowClicked}></paginated-table>
+      <info-panel .selectedIndex=${this.selectedIndex}></info-panel>
+  `;
     }
 };
 __decorate([
     property({ type: String })
 ], MyApp.prototype, "apiEndpoint", void 0);
+__decorate([
+    property({ type: Number })
+], MyApp.prototype, "selectedIndex", void 0);
 MyApp = __decorate([
     customElement('my-app')
 ], MyApp);
